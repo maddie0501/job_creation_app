@@ -1,14 +1,15 @@
-'use client';
+"use client";
 
-import Image from 'next/image';
+import Image from "next/image";
 
 interface Job {
   id: number;
   title: string;
-  type: 'Full-time' | 'Part-time' | 'Contract' | 'Internship';
+  type: "Full-time" | "Part-time" | "Contract" | "Internship";
   salary: string;
   description: string;
   logoUrl: string;
+  location: string;
 }
 
 export default function JobCardList({ jobs }: { jobs: Job[] }) {
@@ -23,21 +24,20 @@ export default function JobCardList({ jobs }: { jobs: Job[] }) {
             <div className="flex items-center justify-between gap-4">
               <div className="relative w-[100px] h-[100px]">
                 <Image
-                  src={job.logoUrl || '/Amazonlogo.png'}
+                  src={job.logoUrl || "/Amazonlogo.png"}
                   alt="Logo"
                   fill
                   className="object-contain"
                   sizes="100px"
-                  
                 />
               </div>
 
               <button className="bg-[#B0D9FF] p-1 rounded-sm text-sm">
-                <span className="text-sm">24h Ago</span>
+                <span className="text-md font-bold">24h Ago</span>
               </button>
             </div>
             <div>
-              <h3 className="text-lg font-semibold">{job.title}</h3>
+              <h3 className="text-lg font-extrabold text-black">{job.title}</h3>
             </div>
             <div className="flex flex-row mt-4 mb-4 text-sm text-gray-700 justify-between">
               <div className="flex flex-row text-gray-700 items-center">
@@ -59,7 +59,7 @@ export default function JobCardList({ jobs }: { jobs: Job[] }) {
                   height={20}
                   className="w-4 h-4"
                 />
-                <p>Onsite</p>
+                <p>{job.type}</p>
               </div>
 
               <div className="flex flex-row text-gray-700 items-center">
@@ -70,20 +70,24 @@ export default function JobCardList({ jobs }: { jobs: Job[] }) {
                   height={20}
                   className="w-4 h-4"
                 />
-                <p>12 LPA</p>
+                <p>{job.salary}</p>
               </div>
             </div>
 
-            <ul className="text-sm p-2">
-              <li>
-                A user-friendly interface lets you browse stunning photos and
-                videos
-              </li>
-              <li>
-                Filter destinations based on interests and travel style, and
-                create personalized
-              </li>
-            </ul>
+            {job.description ? (
+              <ul className="text-sm p-2 text-gray-500">
+                <li>
+                  A user-friendly interface lets you browse stunning photos and
+                  videos
+                </li>
+                <li>
+                  Filter destinations based on interests and travel style, and
+                  create personalized
+                </li>
+              </ul>
+            ) : (
+              <p className="text-sm p-2 text-gray-500">{job.description}</p>
+            )}
 
             <button className="bg-[#00AAFF] text-white text-sm px-5 py-2 w-full rounded-md font-semibold transition cursor-pointer">
               Apply now

@@ -1,5 +1,10 @@
 @import "tailwindcss";
 
+*{
+  font-family: 'Satoshi Variable';
+
+}
+
 /* :root {
   --background: #ffffff;
   --foreground: #171717;
